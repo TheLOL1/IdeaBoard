@@ -19,6 +19,18 @@ routes.post("/insertIdea",IdeaController.store);
 routes.get("/listIdeas",IdeaController.index);
 
 /**
+ * Realiza um post em "/updateIdea" que irá alterar uma ideia já inserida no banco de dados.
+ */
+
+routes.post("/updateIdea",IdeaController.update);
+
+/**
+ * Realiza um delete em "/deleteIdea" que irá deletar uma ideia inserida no banco de dados.
+ */
+
+routes.delete("/removeIdea",IdeaController.destroy);
+
+/**
  * Realiza um post em "/createUser" que irá inserir no banco de dados na tabela User.
  */
 

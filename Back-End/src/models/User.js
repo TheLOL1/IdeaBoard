@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"); //define o mongoose dos modulos do MongoDB
 
 /**
- * Define as colunas da tabela que irá armazenar os usuarios.
+ * Define as colunas (nome, email, data de criação e data de alteração) da tabela que irá armazenar os usuarios.
  */
 
 const UserSchema = new mongoose.Schema({

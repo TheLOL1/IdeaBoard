@@ -2,7 +2,7 @@
 const User = require("../models/User"); //Define user que está em models
 
 /**
- * Define o método de armazenar e retornar da API da parte de Usuarios.
+ * Exporta o método de armazenar da API da parte de Usuarios.
  */
 
 module.exports = {
@@ -18,6 +18,10 @@ module.exports = {
                 nome: usuario.name,
                 email: usuario.email
             })
+        }
+        else
+        {
+            return (res.status(409).json({error: "Usuário já existe"}));
         }
         return (res.json(user));
     }

@@ -10,6 +10,7 @@ const app = express(); //inicializa o express
 mongoose.connect("mongodb+srv://ideaboard:ideaboard@cluster0-9hbfc.mongodb.net/test?retryWrites=true&w=majority",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false
 })
 
 /**
@@ -19,10 +20,10 @@ mongoose.connect("mongodb+srv://ideaboard:ideaboard@cluster0-9hbfc.mongodb.net/t
 app.use(express.json());
 
 /**
- * Realiza o request no Routes que retorna "Olá World".
+ * Realiza o request no Routes que retorna os metodos da API para Ideia e Usúario.
  */
 
-app.use(require("./routes"));
+app.use(require("./Routes"));
 
 /**
  * Define a porta 3333 pro navegador.

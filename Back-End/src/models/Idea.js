@@ -1,7 +1,7 @@
 const mongoose = require("mongoose"); //define o mongoose dos modulos do MongoDB
 
 /**
- * Define as colunas da tabela que irá armazenar as ideias.
+ * Define as colunas (titulo, descricao, usuario, data de criacao e data de alteração) da tabela que irá armazenar as ideias.
  */
 
 const IdeaSchema = new mongoose.Schema({
