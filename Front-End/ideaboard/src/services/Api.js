@@ -1,4 +1,4 @@
-import Axios from "axios";//importa o axios do seu modulo
+import Axios from "axios"; //importa o axios do seu modulo
 
 /**
  * Inicializa o axios em Api definindo sua url base.
@@ -6,8 +6,8 @@ import Axios from "axios";//importa o axios do seu modulo
 
 const Api = Axios.create(
     {
-        baseURL: "http://127.0.0.1:3333"
+        baseURL: "http://ideaboard.us-3.evennode.com"
     }
 );
 
-export default Api;//exporta Api que é utilizado em pages/cadastrar e pages/logar
+export default Api; //exporta Api que é utilizado em pages/cadastrar e pages/logar

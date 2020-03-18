@@ -1,4 +1,3 @@
-//index, show, store, update, destroy
 const User = require("../models/User"); //Define user que está em models
 
 /**
@@ -12,19 +11,19 @@ module.exports = {
             email: req.body.email,
             password: req.body.senha
         }
-        let user = await User.findOne({email} = req.body);
-        if (!user)
+        const userPesquisa = await User.findOne({email} = req.body);
+        if (!userPesquisa)
         {
-            user = await User.create({
+            const user = await User.create({
                 nome: usuario.name,
                 email: usuario.email,
                 senha: usuario.password
             })
+            return (res.json(user));
         }
         else
         {
             return (res.status(409).json({error: "Usuário já existe"}));
         }
-        return (res.json(user));
     }
 };

@@ -1,5 +1,9 @@
-import { createGlobalStyle } from "styled-components";
-import "font-awesome/css/font-awesome.css";
+import { createGlobalStyle } from "styled-components"; //importa o modulo createGlobalStyle do styled componentes
+import "font-awesome/css/font-awesome.css"; //importa as fontes
+
+/**
+ * Estiliza o body e o html
+ */
 
 const GlobalStyle = createGlobalStyle`
 * 
@@ -20,4 +24,4 @@ body, html
 }
 `;
 
-export default GlobalStyle;
+export default GlobalStyle; //exporta o estilo global que é utilizado em App.js

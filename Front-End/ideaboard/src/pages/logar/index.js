@@ -1,6 +1,6 @@
-import React, { Component } from "react";//importa modulos do react
-import { Link, withRouter } from "react-router-dom";//importa modulos do react-router-dom
-import {Form, Container} from "./styles";//importa os estilos definidos em styles.js
+import React, { Component } from "react"; //importa modulos do react
+import { Link, withRouter } from "react-router-dom"; //importa modulos do react-router-dom
+import {Form, Container} from "./styles"; //importa os estilos definidos em styles.js
 
 /**
  * Classe que renderiza a pagina de login e manipula os seus estados.
@@ -46,6 +46,7 @@ class Logar extends Component
         return (
             <Container>
                 <Form onSubmit={this.handleLogar}>
+                    <h1>Quadro de Ideias</h1>
                     {this.state.error && <p>{this.state.error}</p>}
                     <input type="email" placeholder="E-mail" onChange={e => this.setState({email: e.target.value})}/>
                     <input type="password" placeholder="Senha" onChange={e => this.setState({senha: e.target.value})}/>
@@ -58,4 +59,4 @@ class Logar extends Component
     }
 }
 
-export default withRouter(Logar);//exporta a classe que é utilizada em routes.js e adiciona no historico do props
+export default withRouter(Logar); //exporta a classe que é utilizada em routes.js e adiciona no historico do props

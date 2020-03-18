@@ -1,7 +1,7 @@
-import React from "react";//importa os modulos do react
-import { BrowserRouter, Route, Switch, Redirect as PrivateRoute } from "react-router-dom";//importa os modulos de transição de pagina do react-router-dom
-import Cadastrar from "./pages/cadastrar";//importa a pagina de cadastro presente em pages/cadastrar
-import Logar from "./pages/logar";//importa a pagina de login presente em pages/logar
+import React from "react"; //importa os modulos do react
+import { BrowserRouter, Route, Switch, Redirect as PrivateRoute } from "react-router-dom"; //importa os modulos de transição de pagina do react-router-dom
+import Cadastrar from "./pages/cadastrar"; //importa a pagina de cadastro presente em pages/cadastrar
+import Logar from "./pages/logar"; //importa a pagina de login presente em pages/logar
 
 /**
  * Define as rotas da aplicação com os seus respectivos caminhos.
@@ -18,4 +18,4 @@ const Routes = () => (
     </BrowserRouter>
 );
 
-export default Routes;//exporta as rotas da aplicação que é utilizada em App.js
+export default Routes; //exporta as rotas da aplicação que é utilizada em App.js

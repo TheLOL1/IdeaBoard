@@ -1,4 +1,4 @@
-import styled from "styled-components";//importa os modulos do styled componentes
+import styled from "styled-components"; //importa os modulos do styled componentes
 
 /**
  * Estiliza o container utilizado na pagina de cadastro.
@@ -69,5 +69,10 @@ export const Form = styled.form`
         font-weight: bold;
         color: #999;
         text-decoration: none;
+    }
+    h1
+    {
+        margin-bottom: 15px;
+        color: #253c51;
     }
 `;

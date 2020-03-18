@@ -4,9 +4,9 @@ const routes = new express.Router(); //define o routes dos modulos do router
 
 const IdeaController = require("./controllers/IdeaController"); //define o IdeaController que está em controllers
 
-const SessionController = require("./controllers/SessionController"); //define o SessionController que está em controllers
+const UserController = require("./controllers/UserController"); //define o UserController que está em controllers
 
-const baseURL = "http://localhost:3333"; //define a url base da API
+const baseURL = "http://ideaboard.us-3.evennode.com"; //define a url base da API
 
 /**
  * Define a pagina inicial da API listando seus métodos.
@@ -61,6 +61,6 @@ routes.delete("/removeIdea",IdeaController.destroy);
  * Realiza um post em "/createUser" que irá inserir no banco de dados na tabela User.
  */
 
-routes.post("/createUser",SessionController.store);
+routes.post("/createUser",UserController.store);
 
 module.exports = routes; //exporta routes

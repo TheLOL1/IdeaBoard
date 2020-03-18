@@ -1,7 +1,7 @@
-import React, { Component } from "react";//importa modulos do react
-import { Link, withRouter } from "react-router-dom";//importa modulos do react-router-dom
-import {Form, Container} from "./styles";//importa os estilos definidos em styles.js
-import Api from "../../services/Api";//importa o axios definido em services
+import React, { Component } from "react"; //importa modulos do react
+import { Link, withRouter } from "react-router-dom"; //importa modulos do react-router-dom
+import {Form, Container} from "./styles"; //importa os estilos definidos em styles.js
+import Api from "../../services/Api"; //importa o axios definido em services
 
 /**
  * Classe que renderiza a pagina de cadastro e manipula os seus estados.
@@ -43,13 +43,19 @@ class Cadastrar extends Component
         {
            try
            {
-                await Api.post("/createUser",{nome, email, senha}); //realiza o post na API que irá inserir on usúario no banco de dados.
+                await Api.post("/createUser",{nome, email, senha}); //realiza o post na API que irá inserir o usúario no banco de dados.
                 this.props.history.push("/");
            }
            catch (e)
            {
-               console.log(e);
-               this.setState({error: "Ocorreu um erro ao registrar sua conta!"});
+               if (e.response.status === 409)
+               {
+                   this.setState({error: "Já existe um usúario cadastrado com este e-mail!"});
+               }
+               else
+               {
+                   this.setState({error: "Ocorreu um erro ao registrar sua conta!"});
+               }
            }
         }
     };
@@ -63,6 +69,7 @@ class Cadastrar extends Component
         return(
             <Container>
                 <Form onSubmit={this.handleCadastrar}>
+                    <h1>Quadro de Ideias</h1>
                     {this.state.error && <p>{this.state.error}</p>}
                     <input type= "text" placeholder="Nome" onChange={e => this.setState({nome: e.target.value})}/>
                     <input type= "email" placeholder="E-mail" onChange={e => this.setState({email: e.target.value})}/>
@@ -77,4 +84,4 @@ class Cadastrar extends Component
     }
 }
 
-export default withRouter(Cadastrar);//exporta a classe que é utilizada em routes.js e adiciona no historico do props
+export default withRouter(Cadastrar); //exporta a classe que é utilizada em routes.js e adiciona no historico do props

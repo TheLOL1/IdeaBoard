@@ -1,5 +1,5 @@
 const Idea = require("../models/Idea"); //define o Idea que está em models.
-const User = require("../models/User") //define o User que está em models.
+const User = require("../models/User"); //define o User que está em models.
 
 /**
  * Exporta os métodos de armazenar, retornar, alterar e deletar da API da parte de Ideias.
@@ -27,6 +27,7 @@ module.exports = {
             user_id: req.headers.user_id
         }
         const user = await User.findById(Ideia.user_id);
+        console.log(req.header("user_id"));
         if (!user)
         {
             return (res.status(400).json({error: "Usuário não existe"}));
