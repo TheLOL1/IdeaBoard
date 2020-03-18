@@ -12,6 +12,12 @@ module.exports = {
         const ideas = await Idea.find().sort("-createdAt");
         return (res.json(ideas));
     },
+    //retorna todas as ideias de um usúario a partir do seu ID ordenandas com as mais recentemente inseridas.
+    async show(req,res)
+    {
+        const ideas = await Idea.find({usuario: req.headers.user_id}).sort("-createdAt");
+        return (res.json( ideas ));
+    },
     //insere no banco de dados uma nova ideia na tabela
     async store(req,res)
     {

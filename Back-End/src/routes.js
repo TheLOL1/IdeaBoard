@@ -6,6 +6,27 @@ const IdeaController = require("./controllers/IdeaController"); //define o IdeaC
 
 const SessionController = require("./controllers/SessionController"); //define o SessionController que está em controllers
 
+const baseURL = "http://localhost:3333"; //define a url base da API
+
+/**
+ * Define a pagina inicial da API listando seus métodos.
+ */
+
+routes.get("/",(req,res) =>
+{
+    return res.json({
+        MetodosIdeia: {
+            Inserir: `${baseURL}/insertIdea/?user_id=<id>`,
+            Listar: `${baseURL}/listIdeas`,
+            Alterar: `${baseURL}/updateIdea/?idea_id=<id>`,
+            Remover: `${baseURL}/removeIdea/?idea_id=<id>`
+        },
+        MetodosUsuario: {
+            Inserir: `${baseURL}/createUser`
+        },
+    })
+})
+
 /**
  * Realiza um post em "/insertIdea" que irá inserir no banco de dados na tabela ideia.
  */
@@ -13,10 +34,16 @@ const SessionController = require("./controllers/SessionController"); //define o
 routes.post("/insertIdea",IdeaController.store);
 
 /**
- * Realiza um get em "/getIdeas" que irá retornar todas as ideias inseridas na tabela ideia.
+ * Realiza um get em "/listIdeas" que irá retornar todas as ideias inseridas na tabela ideia.
  */
 
 routes.get("/listIdeas",IdeaController.index);
+
+/**
+ * Realiza um get em "/listIdeasUser" que irá retorna todas as ideias de um determinado Usúario.
+ */
+
+routes.get("/listIdeasUser",IdeaController.show)
 
 /**
  * Realiza um post em "/updateIdea" que irá alterar uma ideia já inserida no banco de dados.

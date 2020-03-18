@@ -9,14 +9,16 @@ module.exports = {
     async store(req,res){
         const usuario = {
             name: req.body.nome,
-            email: req.body.email
+            email: req.body.email,
+            password: req.body.senha
         }
         let user = await User.findOne({email} = req.body);
         if (!user)
         {
             user = await User.create({
                 nome: usuario.name,
-                email: usuario.email
+                email: usuario.email,
+                senha: usuario.password
             })
         }
         else
