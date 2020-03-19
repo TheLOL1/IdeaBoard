@@ -5,6 +5,7 @@ const User = require("../models/User"); //Define user que está em models
  */
 
 module.exports = {
+    //Armazena um novo usúario no banco de dados
     async store(req,res){
         const usuario = {
             name: req.body.nome,
@@ -25,5 +26,11 @@ module.exports = {
         {
             return (res.status(409).json({error: "Usuário já existe"}));
         }
+    },
+    //Pesquisa um usúario a partir do seu e-mail
+    async show (req,res)
+    {
+        const usuario = await User.findOne({email} = req.body);
+        return (res.json(usuario));
     }
 };

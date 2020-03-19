@@ -15,7 +15,7 @@ module.exports = {
     //retorna todas as ideias de um usúario a partir do seu ID ordenandas com as mais recentemente inseridas.
     async show(req,res)
     {
-        const ideas = await Idea.find({usuario: req.headers.user_id}).sort("-createdAt");
+        const ideas = await Idea.find({usuario: req.get("user_id")}).sort("-createdAt");
         return (res.json( ideas ));
     },
     //insere no banco de dados uma nova ideia na tabela
@@ -24,10 +24,9 @@ module.exports = {
         const Ideia = {
             title: req.body.titulo,
             description: req.body.descricao,
-            user_id: req.headers.user_id
+            user_id: req.get("user_id")
         }
         const user = await User.findById(Ideia.user_id);
-        console.log(req.header("user_id"));
         if (!user)
         {
             return (res.status(400).json({error: "Usuário não existe"}));
@@ -42,7 +41,7 @@ module.exports = {
     //altera no banco de dados uma ideia a partir do seu ID
     async update(req,res)
     {
-        const antigaIdeia = await Idea.findById(req.headers.idea_id);
+        const antigaIdeia = await Idea.findById(req.get("idea_id"));
         if (!antigaIdeia)
         {
             return (res.status(400).json({error: "Ideia não existe"}));
@@ -62,12 +61,12 @@ module.exports = {
     //remove uma ideia do banco de dados a partir do seu ID
     async destroy(req,res)
     {
-        let removeIdea = await Idea.findById(req.headers.idea_id);
+        let removeIdea = await Idea.findById(req.get("idea_id"));
         if (!removeIdea)
         {
             return (res.status(400).json({error: "Ideia não existe"}));
         }
-        removeIdea = await Idea.findByIdAndRemove(req.headers.idea_id);
+        removeIdea = await Idea.findByIdAndRemove(req.get("idea_id"));
         return (res.json( removeIdea ));
     }
 };

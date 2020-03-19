@@ -16,13 +16,19 @@ routes.get("/",(req,res) =>
 {
     return res.json({
         MetodosIdeia: {
-            Inserir: `${baseURL}/insertIdea/?user_id=<id>`,
+            Inserir: `${baseURL}/insertIdea/`,
+            OBSInserir: "Passar no body titulo e descricao, no header (user_id) passar id do usúario",
             Listar: `${baseURL}/listIdeas`,
-            Alterar: `${baseURL}/updateIdea/?idea_id=<id>`,
-            Remover: `${baseURL}/removeIdea/?idea_id=<id>`
+            Alterar: `${baseURL}/updateIdea/`,
+            OBSAlterar: "Passar no body titulo e descricao, no header (idea_id) passar id da ideia que deseja alterar",
+            Remover: `${baseURL}/removeIdea/`,
+            OBSRemover: "No header (idea_id) passar id da ideia que deseja excluir"
         },
         MetodosUsuario: {
-            Inserir: `${baseURL}/createUser`
+            Inserir: `${baseURL}/createUser`,
+            OBSInserir: "Passar no body nome, e-mail e senha",
+            Sessao: `${baseURL}/sessao`,
+            OBSSessao: "Passar no body o e-mail"
         },
     })
 })
@@ -62,5 +68,11 @@ routes.delete("/removeIdea",IdeaController.destroy);
  */
 
 routes.post("/createUser",UserController.store);
+
+/**
+ * Realiza um post em "/sessao" que irá retornar o usúario a partir do seu e-mail.
+ */
+
+routes.post("/sessao",UserController.show);
 
 module.exports = routes; //exporta routes
