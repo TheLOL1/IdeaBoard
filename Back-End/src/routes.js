@@ -19,6 +19,8 @@ routes.get("/",(req,res) =>
             Inserir: `${baseURL}/insertIdea/`,
             OBSInserir: "Passar no body titulo e descricao, no header (user_id) passar id do usúario",
             Listar: `${baseURL}/listIdeas`,
+            ListarIdeiasUsuario: `${baseURL}/listIdeasUser`,
+            OBSListarIdeiasUsuario: "Passar no header (user_id) do usúario que deseja listar as ideias vinculadas",
             Alterar: `${baseURL}/updateIdea/`,
             OBSAlterar: "Passar no body titulo e descricao, no header (idea_id) passar id da ideia que deseja alterar",
             Remover: `${baseURL}/removeIdea/`,

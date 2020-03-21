@@ -1,33 +1,18 @@
 import React, { useEffect, useState } from "react"; //importa modulos do react
-import {H1, Container, ContainerForm, Form, Button, ContainerButton, DeleteButton} from "./styles"; //importa os estilos definidos em styles.js
+import {Titulo, ContainerTitulo, Form, ButtonNewIdea, ContainerButtonAndSelect, DeleteButtonForm, SelectStyle, Label, ContainerFormAndDeleteButton, ButtonExit} from "./styles"; //importa os estilos definidos em styles.js
 import Api from "../../services/Api"; //importa o axios definido em services
 import { deslogar, getToken } from "../../services/auth"; //importa o método de logar definido em auth.js
-import Select from 'react-select'; //importa o select do react
 
 /**
  * Exporta a pagina principal da aplicação.
  */
 
-export default function Principal()
+export default function Principal({history})
 {
-    const [ideias,setIdeias] = useState([]); //define o estado ideia juntamente com seu metodo de set, e seta o estado inicial como array vazio
+    const [ideias,setIdeias] = useState([]); //define o estado ideia juntamente com seu metodo de set e seta o estado inicial como array vazio
+    const [exibirDelete,setExibirDelete] = useState(false); //define o estado exibirDelete juntamente com seu metodo de set e seta o estado inicial como false
+    const [exibirSalvandoAlteracoes,setExibirSalvandoAlteracoes] = useState(false); //define o exibirSalvandoAlteracoes descricao juntamente com seu método de set e seta o estado inicial como false
     const user_id = getToken() //retorna o id do usúario logado
-
-    /**
-     * Array com as opções do select.
-     */
-
-    const opcoesOrdenar =
-    [
-        {
-            value: "maisrecentes",
-            label: "Mais recentes"
-        },
-        {
-            value: "maisantigos",
-            label: "Mais antigos"
-        }
-    ]
 
     /**
      * Realiza um get na API que irá retornar as ideias vinculadas ao usúario logado e seta o estado de ideias, se o usúario não tiver nenhuma ideia vinculada é chamado o método inserirIdeia().
@@ -57,7 +42,7 @@ export default function Principal()
     },[]);
 
     /**
-     * Realiza um post na API para inserir uma nova ideia e chama o carregar ideias para pode ser criado um novo form. 
+     * Realiza um post na API para inserir uma nova ideia e atualiza o estado de ideias para atualizar a interface.
      */
 
     async function inserirIdeia()
@@ -67,8 +52,12 @@ export default function Principal()
             descricao: ""
         },{
             headers: {user_id}
+        }).then(function (resposta)
+        {
+            const novoArray = ideias.slice(); //copia os dados para um novo array
+            novoArray.unshift(resposta.data) //adiciona a nova ideia na primeira posição do array e realiza um shift para atualizar posicoes dos restante
+            setIdeias(novoArray)
         });
-        carregarIdeias();
     }
 
     /**
@@ -85,6 +74,66 @@ export default function Principal()
             setIdeias(ideias.filter(ideia => ideia._id !== idea_id));  
         }); 
     }
+
+    /**
+     * Realiza o logout da aplicação removendo o token do local storage.
+     */
+
+    function logout()
+    {
+       deslogar();
+       history.push("/");
+    }
+
+    /**
+     * Altera o estado de exibirDelete para true se o usúario estiver com o mouse em cima do botão de deletar ideia e com isso irá tornar visivel.
+     */
+
+    function tornarVisivelDeletarIdeia ()
+    {
+        setExibirDelete(true);
+    }
+
+    /**
+     * Altera o estado de exibirDelete para false se o usúario não estiver com o mouse em cima do botão de deletar ideia e com isso irá tornar invisivel.
+     */
+
+    function tonarInvisivelDeletarIdeia()
+    {
+        setExibirDelete(false);
+    }
+
+    /**
+     * Realiza um post na API para salvar as alterações realizadas no titulo da ideia.
+     */
+
+    async function atualizarIdeiaTitulo(titulo,idea_id)
+    {
+        setExibirSalvandoAlteracoes(true);
+        await Api.post("/updateIdea",{
+            titulo
+        },{
+            headers:{idea_id}
+        }).then(function(){
+            setExibirSalvandoAlteracoes(false);
+        });
+    }
+
+    /**
+     * Realiza um post na API para salvar as alterações realizadas na descrição da ideia.
+     */
+
+    async function atualizarIdeiaDescricao(descricao,idea_id)
+    {
+        setExibirSalvandoAlteracoes(true);
+        await Api.post("/updateIdea",{
+            descricao
+        },{
+            headers:{idea_id}
+        }).then(function(){
+            setExibirSalvandoAlteracoes(false);
+        });
+    }
     
 
     /**
@@ -94,25 +143,31 @@ export default function Principal()
 
     return (
         <>
-            <Container>
-                <H1>Quadro de Ideias</H1>
-            </Container>
-            <ContainerButton>
-                <Button type="submit" onClick={() => inserirIdeia()}>Nova Ideia</Button>
-                <Select options={opcoesOrdenar} defaultValue={opcoesOrdenar[0]} />
-            </ContainerButton>
-            <ContainerForm>
+            <ContainerTitulo>
+                <Titulo>Quadro de Ideias</Titulo>
+                <ButtonExit type="submit" onClick={() => logout()}>SAIR</ButtonExit>
+            </ContainerTitulo>
+            <ContainerButtonAndSelect>
+                <ButtonNewIdea type="submit" onClick={() => inserirIdeia()}>Nova Ideia</ButtonNewIdea>
+                <Label>Ordenar as ideias por:</Label>
+                <SelectStyle>
+                    <option value="maisrecentes" defaultValue>Mais recentes</option>
+                    <option value="maisantigas">Mais antigas</option>
+                </SelectStyle>
+                {exibirSalvandoAlteracoes ? <Label>Salvando alterações...</Label> : null}
+            </ContainerButtonAndSelect>
+            <ContainerFormAndDeleteButton>
                 {ideias.map(ideia =>
                             (
-                                <Form key={ideia._id}>
-                                <DeleteButton onClick={e => deletarIdeia(e,ideia._id)}></DeleteButton>
-                                <input type="text" placeholder="Título da Ideia" defaultValue={ideia.titulo}/>
-                                <textarea id="descricao" type="text" placeholder="Descreva a Ideia" defaultValue={ideia.descricao}/>
+                                <Form key={ideia._id} onMouseEnter={() => tornarVisivelDeletarIdeia()} onMouseLeave={() => tonarInvisivelDeletarIdeia()}>
+                                    {exibirDelete ? <DeleteButtonForm type="submit" onClick={e => deletarIdeia(e,ideia._id)}></DeleteButtonForm> : null}
+                                    <input type="text" placeholder="Título da Ideia" defaultValue={ideia.titulo} onChange={e => atualizarIdeiaTitulo(e.target.value,ideia._id)}/>
+                                    <textarea id="descricao" type="text" placeholder="Descreva a Ideia" defaultValue={ideia.descricao} onChange={e =>atualizarIdeiaDescricao(e.target.value,ideia._id)}/>
                                 </Form>
                             )
                         )
                 }
-            </ContainerForm>
+            </ContainerFormAndDeleteButton>
         </>
     );
 }

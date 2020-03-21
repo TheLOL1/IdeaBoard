@@ -5,18 +5,18 @@ import deletar from "../../assets/delete.png";
  * Estiliza a pagina principal da aplicação que é utilizado em index.js
  */
 
-export const H1 = styled.h1`
+export const Titulo = styled.h1`
     color: white;
 `;
 
-export const Container = styled.div`
+export const ContainerTitulo = styled.div`
     margin-top: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
 `;
 
-export const ContainerForm = styled.div`
+export const ContainerFormAndDeleteButton = styled.div`
     display: flex;
     width: 90%;
     margin-top: 10px;
@@ -64,7 +64,7 @@ export const Form = styled.form`
     }
 `;
 
-export const Button = styled.button`
+export const ButtonNewIdea = styled.button`
     color: #fff;
     font-size: 16px;
     background:  #253c51;
@@ -73,9 +73,10 @@ export const Button = styled.button`
     border-radius: 5px;
     width: 10%;
     margin-right: 30px;
+    cursor: pointer;
 `;
 
-export const ContainerButton = styled.div`
+export const ContainerButtonAndSelect = styled.div`
     margin-top: 18px;
     display: flex;
     align-items: center;
@@ -83,10 +84,51 @@ export const ContainerButton = styled.div`
     margin-left: 50px;
 `;
 
-export const DeleteButton = styled.button`
-    background-image: url(${deletar});
+export const DeleteButtonForm = styled.button`
+    border: 0;
+    cursor: pointer;
+    background: url(${deletar});
     height: 32px;
     width: 32px;
-    margin-left: 150px;
+    position: absolute;
     margin-top: 10px;
+    margin-left: 12%;
+`;
+
+export const SelectStyle = styled.select`
+    background:  #253c51;
+    font-size: 16px;
+    color: #fff;
+    margin-left: 10px;
+    border: 0;
+    border-radius: 5px;
+    height: 30px;
+    margin-right: 50px;
+`;
+
+export const Label = styled.label`
+    font-size: 16px;
+    color: #fff;
+`;
+
+export const ButtonExit = styled.button`
+    color: #fff;
+    position: absolute;
+    background:  none;
+    border: 0;
+    top: 0;
+    right: 0;
+    padding: 30px;
+    margin-right: 10%;
+    font-size: 16px;
+    border-radius: 5px;
+    background:  #253c51;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.3s;
+    &:hover
+    {
+        opacity: 1;
+    }
+    height: 7%;
 `;

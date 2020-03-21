@@ -46,9 +46,27 @@ module.exports = {
         {
             return (res.status(400).json({error: "Ideia não existe"}));
         }
+        let title="";
+        let description="";
+        if (req.body.titulo === undefined && antigaIdeia.titulo !== null)
+        {
+            title = antigaIdeia.titulo;
+        }
+        else if (req.body.titulo !== "" && req.body.titulo !== undefined)
+        {
+            title = req.body.titulo;
+        }
+        if (req.body.descricao === undefined && antigaIdeia.descricao !== null)
+        {
+            description = antigaIdeia.descricao;
+        }
+        else if (req.body.descricao !== "" && req.body.descricao !== undefined)
+        {
+            description = req.body.descricao;
+        }
         const novaIdeia = {
-            title: req.body.titulo,
-            description: req.body.descricao,
+            title,
+            description,
             user: antigaIdeia.usuario
         }
         const newIdea = await Idea.findByIdAndUpdate(req.headers.idea_id,{
