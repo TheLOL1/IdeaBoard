@@ -1,6 +1,6 @@
 import React, { Component } from "react"; //importa modulos do react
 import { Link, withRouter } from "react-router-dom"; //importa modulos do react-router-dom
-import {Form, Container} from "./styles"; //importa os estilos definidos em styles.js
+import {Form, Container} from "../../styles/stylesLogar"; //importa os estilos definidos em styles.js
 import Api from "../../services/Api"; //importa o axios definido em services
 import { login } from "../../services/auth"; //importa o método de logar definido em auth.js
 
@@ -66,9 +66,8 @@ class Logar extends Component
                     {this.state.error && <p>{this.state.error}</p>}
                     <input type="email" placeholder="E-mail" onChange={e => this.setState({email: e.target.value})}/>
                     <input type="password" placeholder="Senha" onChange={e => this.setState({senha: e.target.value})}/>
-                    <button type="submit">ENTRAR</button>
-                    <hr />
-                    <Link to="/cadastrar">CADASTRAR</Link>
+                    <button id="btEntrar" type="submit">ENTRAR</button>
+                    <button id="btCadastrar"><Link to="/cadastrar">CADASTRAR</Link></button>
                 </Form>
             </Container>
         );

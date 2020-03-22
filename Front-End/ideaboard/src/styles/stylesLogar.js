@@ -16,11 +16,14 @@ export const Container = styled.div`
  */
 
 export const Form = styled.form`
-    width: 400px;
+    width: 600px;
+    height: 310px;
     background: #fff;
     padding: 20px;
     display: flex;
     flex-direction: column;
+    border: 1px solid  #102A3C;
+    border-radius: 10px;
     align-items: center;
     p
     {
@@ -33,8 +36,7 @@ export const Form = styled.form`
     }
     input
     {
-        flex: 1;
-        height: 46px;
+        height: 30px;
         margin-bottom: 15px;
         padding: 0 20px;
         color: #777;
@@ -46,7 +48,7 @@ export const Form = styled.form`
             color: #999;
         }
     }
-    button
+    #btEntrar
     {
         color: #fff;
         font-size: 16px;
@@ -55,20 +57,32 @@ export const Form = styled.form`
         border: 0;
         border-radius: 5px;
         width: 100%;
+        cursor: pointer;
     }
-    hr
+    #btCadastrar
     {
-        margin: 20px 0;
-        border: none;
-        border-bottom: 1px solid #cdcdcd;
+        background: #fff;
+        margin-top: 10px;
+        font-size: 16px;
+        height: 56px;
         width: 100%;
+        border: 0;
+        outline: solid 0.5px transparent;
+        transition: outline 0.6s linear;
+        margin: 0.5em;
+        &: hover
+        {
+            outline-color: #253c51;
+            outline-width: 1px;
+        }
     }
     a
     {
         font-size: 16;
         font-weight: bold;
-        color: #999;
+        color: #253c51;
         text-decoration: none;
+        font-size: 16px;
     }
     h1
     {

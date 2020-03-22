@@ -15,7 +15,6 @@ const GlobalStyle = createGlobalStyle`
 }
 body, html
 {
-    background: #102A3C;
     font-family: 'Helvetica Neue, 'Helvetica', Arial, sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;

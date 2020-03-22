@@ -1,6 +1,6 @@
 import React, { Component } from "react"; //importa modulos do react
 import { Link, withRouter } from "react-router-dom"; //importa modulos do react-router-dom
-import {Form, Container} from "./styles"; //importa os estilos definidos em styles.js
+import {Form, Container} from "../../styles/stylesCadastrar"; //importa os estilos definidos em styles.js
 import Api from "../../services/Api"; //importa o axios definido em services
 
 /**
@@ -75,9 +75,8 @@ class Cadastrar extends Component
                     <input type= "email" placeholder="E-mail" onChange={e => this.setState({email: e.target.value})}/>
                     <input type= "password" placeholder="Senha" onChange={e => this.setState({senha: e.target.value})}/>
                     <input type= "password" placeholder="Confirmar Senha" onChange={e => this.setState({confirmarSenha: e.target.value})}/>
-                    <button type= "submit">CADASTRAR</button>
-                    <hr />
-                    <Link to="/">LOGAR</Link>
+                    <button id ="btCadastrar" type= "submit">CADASTRAR</button>
+                    <button id ="btLogar"><Link to="/">LOGAR</Link></button>
                 </Form>
             </Container>
         );

@@ -12,11 +12,19 @@ module.exports = {
         const ideas = await Idea.find().sort("-createdAt");
         return (res.json(ideas));
     },
-    //retorna todas as ideias de um usúario a partir do seu ID ordenandas com as mais recentemente inseridas.
+    //retorna todas as ideias de um usúario a partir do seu ID ordenandas por data de criação de forma com o que foi pedida no header "sort" (crescente ou decrescente)
     async show(req,res)
     {
-        const ideas = await Idea.find({usuario: req.get("user_id")}).sort("-createdAt");
-        return (res.json( ideas ));
+        if (req.get("sort") === "dec")
+        {
+            const ideas = await Idea.find({usuario: req.get("user_id")}).sort("-createdAt");
+            return (res.json( ideas ));
+        }
+        else
+        {
+            const ideas = await Idea.find({usuario: req.get("user_id")}).sort("+createdAt");
+            return (res.json( ideas )); 
+        }
     },
     //insere no banco de dados uma nova ideia na tabela
     async store(req,res)
