@@ -26,7 +26,7 @@ module.exports = {
             return (res.json( ideas )); 
         }
     },
-    //insere no banco de dados uma nova ideia na tabela
+    //insere no banco de dados uma nova ideia na tabela se o usúario existir
     async store(req,res)
     {
         const Ideia = {
@@ -43,10 +43,10 @@ module.exports = {
             titulo: Ideia.title,
             descricao: Ideia.description,
             usuario: Ideia.user_id
-        })
+        });
         return (res.json( idea ));
     },
-    //altera no banco de dados uma ideia a partir do seu ID
+    //altera no banco de dados uma ideia se existir a partir do seu ID
     async update(req,res)
     {
         const antigaIdeia = await Idea.findById(req.get("idea_id"));
@@ -81,10 +81,10 @@ module.exports = {
            titulo: novaIdeia.title,
            descricao: novaIdeia.description,
            usuario: novaIdeia.user
-        })
-        return (res.json( newIdea ))
+        });
+        return (res.json( newIdea ));
     },
-    //remove uma ideia do banco de dados a partir do seu ID
+    //remove uma ideia se existir do banco de dados a partir do seu ID
     async destroy(req,res)
     {
         let removeIdea = await Idea.findById(req.get("idea_id"));

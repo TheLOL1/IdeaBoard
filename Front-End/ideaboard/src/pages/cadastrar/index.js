@@ -1,6 +1,6 @@
 import React, { Component } from "react"; //importa modulos do react
 import { Link, withRouter } from "react-router-dom"; //importa modulos do react-router-dom
-import {Form, Container} from "../../styles/stylesCadastrar"; //importa os estilos definidos em styles.js
+import {Form, Container} from "../../styles/stylesCadastrar"; //importa os estilos definidos em /styles/stylesCadastrar.js
 import Api from "../../services/Api"; //importa o axios definido em services
 
 /**

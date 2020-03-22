@@ -5,7 +5,7 @@ const User = require("../models/User"); //Define user que está em models
  */
 
 module.exports = {
-    //Armazena um novo usúario no banco de dados
+    //Armazena um novo usúario no banco de dados se não ja estiver um usúario inserido com o mesmo e-mail
     async store(req,res){
         const usuario = {
             name: req.body.nome,
@@ -19,7 +19,7 @@ module.exports = {
                 nome: usuario.name,
                 email: usuario.email,
                 senha: usuario.password
-            })
+            });
             return (res.json(user));
         }
         else

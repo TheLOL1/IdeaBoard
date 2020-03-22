@@ -33,46 +33,46 @@ routes.get("/",(req,res) =>
             OBSSessao: "Passar no body o e-mail"
         },
     })
-})
+});
 
 /**
- * Realiza um post em "/insertIdea" que irá inserir no banco de dados na tabela ideia.
+ * Defina a rota "/insertIdea" que irá inserir no banco de dados na tabela ideia.
  */
 
 routes.post("/insertIdea",IdeaController.store);
 
 /**
- * Realiza um get em "/listIdeas" que irá retornar todas as ideias inseridas na tabela ideia.
+ * Define a rota "/listIdeas" que irá retornar todas as ideias inseridas na tabela ideia.
  */
 
 routes.get("/listIdeas",IdeaController.index);
 
 /**
- * Realiza um get em "/listIdeasUser" que irá retorna todas as ideias de um determinado Usúario.
+ * Define a rota "/listIdeasUser" que irá retorna todas as ideias de um determinado Usúario.
  */
 
 routes.get("/listIdeasUser",IdeaController.show)
 
 /**
- * Realiza um post em "/updateIdea" que irá alterar uma ideia já inserida no banco de dados.
+ * Define a rota "/updateIdea" que irá alterar uma ideia já inserida no banco de dados.
  */
 
 routes.post("/updateIdea",IdeaController.update);
 
 /**
- * Realiza um delete em "/deleteIdea" que irá deletar uma ideia inserida no banco de dados.
+ * Define a rota "/deleteIdea" que irá deletar uma ideia inserida no banco de dados.
  */
 
 routes.delete("/removeIdea",IdeaController.destroy);
 
 /**
- * Realiza um post em "/createUser" que irá inserir no banco de dados na tabela User.
+ * Define a rota "/createUser" que irá inserir no banco de dados na tabela User.
  */
 
 routes.post("/createUser",UserController.store);
 
 /**
- * Realiza um post em "/sessao" que irá retornar o usúario a partir do seu e-mail.
+ * Define a rota "/sessao" que irá retornar o usúario a partir do seu e-mail.
  */
 
 routes.post("/sessao",UserController.show);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"; //importa modulos do react
-import {Titulo, ContainerTitulo, Form, ButtonNewIdea, ContainerButtonAndSelect, DeleteButtonForm, SelectStyle, Label, ContainerFormAndDeleteButton, ButtonExit, Grid} from "../../styles/stylesPrincipal"; //importa os estilos definidos em styles.js
+import {Titulo, ContainerTitulo, Form, ButtonNewIdea, ContainerButtonAndSelect, SelectStyle, Label, ContainerFormAndDeleteButton, ButtonExit} from "../../styles/stylesPrincipal"; //importa os estilos definidos em /styles/stylesPrincipal.js
 import Api from "../../services/Api"; //importa o axios definido em services
-import { deslogar, getToken } from "../../services/auth"; //importa o método de logar definido em auth.js
+import { deslogar, getToken } from "../../services/auth"; //importa os métodos de deslogar e getToken definidos em auth.js
 
 /**
  * Exporta a pagina principal da aplicação.
@@ -11,7 +11,7 @@ export default function Principal({history})
 {
     const [ideias,setIdeias] = useState([]); //define o estado ideia juntamente com seu metodo de set e seta o estado inicial como array vazio
     const [exibirSalvandoAlteracoes,setExibirSalvandoAlteracoes] = useState(false); //define o exibirSalvandoAlteracoes juntamente com seu método de set e seta o estado inicial como false
-    const [selected,setSelected] = useState("dec"); //define o selected juntamente com seu método de set e seta o estado inicial como "maisrecentes"
+    const [selected,setSelected] = useState("dec"); //define o selected juntamente com seu método de set e seta o estado inicial como "dec"
     const user_id = getToken() //retorna o id do usúario logado
 
     /**
@@ -35,7 +35,7 @@ export default function Principal({history})
     }
 
     /**
-     * Ao carregar a pagina chama o carregarIdeias() e se o usúario não possuir nehuma ideia inserida no banco de dados chama o inserirIdeia().
+     * Ao carregar a pagina chama o carregarIdeias().
      */
 
     useEffect(() =>
@@ -59,7 +59,7 @@ export default function Principal({history})
             if (selected === "dec")
             {
                 const novoArray = ideias.slice(); //copia os dados para um novo array
-                novoArray.unshift(resposta.data); //adiciona a nova ideia na primeira posição do array pois esta selecionado no select mais recentes e realiza um shift para atualizar posicoes dos restante
+                novoArray.unshift(resposta.data); //adiciona a nova ideia na primeira posição do array pois esta selecionado no select mais recentes e realiza um shift para atualizar posicoes dos restantes
                 setIdeias(novoArray);
             }
             else
@@ -87,7 +87,7 @@ export default function Principal({history})
     }
 
     /**
-     * Realiza o logout da aplicação removendo o token do local storage.
+     * Realiza o logout da aplicação removendo o token do local storage e chama a rota de login.
      */
 
     function logout()

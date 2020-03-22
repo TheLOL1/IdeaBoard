@@ -1,9 +1,9 @@
 import React from "react"; //importa os modulos do react
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"; //importa os modulos de transição de pagina do react-router-dom
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"; //importa os modulos de rota de pagina do react-router-dom
 import Cadastrar from "./pages/cadastrar"; //importa a pagina de cadastro presente em pages/cadastrar
 import Logar from "./pages/logar"; //importa a pagina de login presente em pages/logar
 import { estaAutenticado } from "./services/auth"; //importa o método que verifica se o usúario está autenticado
-import Principal from "./pages/principal"; //importa a pagina principal
+import Principal from "./pages/principal"; //importa a pagina principal presente em pages/principal
 
 /**
  * Define a rota privada onde so é liberada se o usúario estiver autenticado

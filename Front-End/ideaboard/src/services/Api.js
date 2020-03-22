@@ -10,4 +10,4 @@ const Api = Axios.create(
     }
 );
 
-export default Api; //exporta Api que é utilizado em pages/cadastrar e pages/logar
+export default Api; //exporta Api que é utilizado em pages/cadastrar, pages/logar e pages/principal

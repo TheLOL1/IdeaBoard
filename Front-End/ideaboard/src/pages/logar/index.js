@@ -1,6 +1,6 @@
 import React, { Component } from "react"; //importa modulos do react
 import { Link, withRouter } from "react-router-dom"; //importa modulos do react-router-dom
-import {Form, Container} from "../../styles/stylesLogar"; //importa os estilos definidos em styles.js
+import {Form, Container} from "../../styles/stylesLogar"; //importa os estilos definidos em /styles/stylesLogar.js
 import Api from "../../services/Api"; //importa o axios definido em services
 import { login } from "../../services/auth"; //importa o método de logar definido em auth.js
 
@@ -22,7 +22,7 @@ class Logar extends Component
     };
 
     /**
-     * Quando o usúario clica em "ENTRAR" verifica se todos os campos foram preenchidos, se não altera o estado de error,previne que a pagina volte para o estado padrão e por fim realiza a autenticação na API e chama a tela principal.
+     * Quando o usúario clica em "ENTRAR" verifica se todos os campos foram preenchidos, se não altera o estado de error,previne que a pagina volte para o estado padrão e por fim realiza a autenticação na API e chama a rota principal.
      */
 
     handleLogar = async e =>

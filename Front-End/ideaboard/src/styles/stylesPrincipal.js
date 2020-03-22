@@ -1,8 +1,8 @@
 import styled from "styled-components"; //importa os modulos do styled componentes
-import deletar from "../assets/delete.png";
+import deletar from "../assets/delete.png"; //importa a imagem utilizada no botão do form presente em /assets
 
 /**
- * Estiliza o h1 utilizado da pagina principal
+ * Estiliza o h1 utilizado da pagina principal.
  */
 
 export const Titulo = styled.h1`
@@ -11,7 +11,7 @@ export const Titulo = styled.h1`
 `;
 
 /**
- * Estiliza a div do titulo utilizada da pagina principal
+ * Estiliza a div do titulo utilizada da pagina principal.
  */
 
 export const ContainerTitulo = styled.div`
@@ -167,14 +167,4 @@ export const ButtonExit = styled.button`
         opacity: 1;
     }
     height: 7%;
-`;
-
-/**
- * Estiliza a div do grid da pagina principal.
- */
-
-export const Grid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
 `;
